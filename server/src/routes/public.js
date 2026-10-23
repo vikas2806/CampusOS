@@ -2,8 +2,12 @@ const express = require('express');
 const Event = require('../models/Event');
 const asyncWrapper = require('../utils/asyncWrapper');
 const AppError = require('../utils/AppError');
+const { publicRegister } = require('../controllers/registrationController');
 
 const router = express.Router();
+
+// POST /api/public/register
+router.post('/register', publicRegister);
 
 // GET /api/public/events/:slug — no auth required
 router.get('/events/:slug', asyncWrapper(async (req, res) => {

@@ -35,6 +35,7 @@ app.use('/api/public', require('./routes/public'));
 app.use('/api/registrations', require('./routes/registrations'));
 app.use('/api/checkin', require('./routes/checkin'));
 app.use('/api/tasks', require('./routes/tasks'));
+app.use('/api/budget', require('./routes/budget'));
 
 
 // 404 handler

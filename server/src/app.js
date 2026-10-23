@@ -27,8 +27,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'CampusOS API' });
 });
 
-// routes (added as features are built)
-// app.use('/api/auth', require('./routes/auth'));
+// routes
+app.use('/api/auth', require('./routes/auth'));
+
 
 // 404 handler
 app.use((req, res) => {

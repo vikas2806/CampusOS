@@ -33,6 +33,7 @@ app.use('/api/clubs', require('./routes/clubs'));
 app.use('/api/events', require('./routes/events'));
 app.use('/api/public', require('./routes/public'));
 app.use('/api/registrations', require('./routes/registrations'));
+app.use('/api/checkin', require('./routes/checkin'));
 
 
 // 404 handler

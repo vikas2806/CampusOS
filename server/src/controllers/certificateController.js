@@ -1,7 +1,12 @@
 const CertificateTemplate = require('../models/CertificateTemplate');
 const Event = require('../models/Event');
+const Registration = require('../models/Registration');
 const asyncWrapper = require('../utils/asyncWrapper');
 const AppError = require('../utils/AppError');
+const {
+  generateCertificatePdf,
+  generateCertificateCode,
+} = require('../services/certificateService');
 
 // GET /api/certificates/templates/:eventId
 const getTemplate = asyncWrapper(async (req, res) => {
@@ -80,8 +85,83 @@ const listTemplates = asyncWrapper(async (req, res) => {
   res.json({ success: true, templates });
 });
 
+// GET /api/certificates/:registrationId/download
+const downloadCertificate = asyncWrapper(async (req, res) => {
+  const { registrationId } = req.params;
+
+  const registration = await Registration.findById(registrationId).populate({
+    path: 'event',
+    populate: { path: 'club' },
+  });
+
+  if (!registration) {
+    throw new AppError('Registration not found', 404);
+  }
+
+  const event = registration.event;
+  const club = event ? event.club : null;
+
+  // Retrieve template if configured
+  const template = (await CertificateTemplate.findOne({ event: event._id })) || {};
+
+  // If certificateCode not generated yet, assign one
+  if (!registration.certificateCode) {
+    registration.certificateCode = generateCertificateCode(registration._id);
+    await registration.save();
+  }
+
+  const { pdfBuffer } = await generateCertificatePdf({
+    template,
+    registration,
+    event,
+    club,
+  });
+
+  const safeFilename = `${(registration.name || 'certificate').replace(/[^a-zA-Z0-9]/g, '_')}_certificate.pdf`;
+
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `attachment; filename="${safeFilename}"`);
+  res.send(pdfBuffer);
+});
+
+// POST /api/certificates/events/:eventId/issue
+const issueCertificatesForEvent = asyncWrapper(async (req, res) => {
+  const { eventId } = req.params;
+  const { onlyAttended = false } = req.body;
+
+  const event = await Event.findById(eventId);
+  if (!event) {
+    throw new AppError('Event not found', 404);
+  }
+
+  const query = { event: eventId, status: 'confirmed' };
+  if (onlyAttended) {
+    query.attended = true;
+  }
+
+  const registrations = await Registration.find(query);
+  let updatedCount = 0;
+
+  for (const reg of registrations) {
+    if (!reg.certificateCode) {
+      reg.certificateCode = generateCertificateCode(reg._id);
+      await reg.save();
+      updatedCount++;
+    }
+  }
+
+  res.json({
+    success: true,
+    message: `Certificates issued for ${registrations.length} participants (${updatedCount} new)`,
+    total: registrations.length,
+    newIssued: updatedCount,
+  });
+});
+
 module.exports = {
   getTemplate,
   upsertTemplate,
   listTemplates,
+  downloadCertificate,
+  issueCertificatesForEvent,
 };

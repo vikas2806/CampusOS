@@ -3,11 +3,15 @@ const Event = require('../models/Event');
 const asyncWrapper = require('../utils/asyncWrapper');
 const AppError = require('../utils/AppError');
 const { publicRegister } = require('../controllers/registrationController');
+const { verifyCertificate } = require('../controllers/certificateController');
 
 const router = express.Router();
 
 // POST /api/public/register
 router.post('/register', publicRegister);
+
+// GET /api/public/certificates/verify/:code
+router.get('/certificates/verify/:code', verifyCertificate);
 
 // GET /api/public/events/:slug — no auth required
 router.get('/events/:slug', asyncWrapper(async (req, res) => {

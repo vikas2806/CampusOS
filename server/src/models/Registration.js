@@ -58,6 +58,7 @@ const registrationSchema = new mongoose.Schema(
 
 registrationSchema.index({ event: 1, email: 1 }, { unique: true });
 registrationSchema.index({ qrToken: 1 });
+registrationSchema.index({ certificateCode: 1 }, { sparse: true });
 
 const Registration = mongoose.model('Registration', registrationSchema);
 module.exports = Registration;

@@ -158,10 +158,89 @@ const issueCertificatesForEvent = asyncWrapper(async (req, res) => {
   });
 });
 
+// GET /api/certificates/verify/:code
+const verifyCertificate = asyncWrapper(async (req, res) => {
+  const { code } = req.params;
+  if (!code) {
+    throw new AppError('Certificate verification code is required', 400);
+  }
+
+  const registration = await Registration.findOne({
+    certificateCode: code.toUpperCase().trim(),
+  }).populate({
+    path: 'event',
+    populate: { path: 'club', select: 'name logo institution city' },
+    select: 'title startDate endDate venue description club',
+  });
+
+  if (!registration) {
+    throw new AppError('Certificate not found or verification code is invalid', 404);
+  }
+
+  const event = registration.event;
+  const club = event ? event.club : null;
+  const template = await CertificateTemplate.findOne({ event: event ? event._id : null });
+
+  res.json({
+    success: true,
+    verified: true,
+    certificate: {
+      code: registration.certificateCode,
+      recipientName: registration.name,
+      eventName: event ? event.title : 'Event',
+      eventDate: event ? event.startDate : null,
+      clubName: club ? club.name : 'Club',
+      institution: club ? club.institution : '',
+      title: template ? template.title : 'Certificate of Participation',
+      issuerName: template ? template.issuerName : '',
+      issuerTitle: template ? template.issuerTitle : '',
+      signatoryName: template ? template.signatoryName : '',
+      signatoryTitle: template ? template.signatoryTitle : '',
+      issuedAt: template ? template.issueDate : registration.updatedAt,
+      status: registration.status,
+      attended: registration.attended,
+    },
+  });
+});
+
+// GET /api/certificates/verify/:code/pdf
+const downloadVerifiedCertificate = asyncWrapper(async (req, res) => {
+  const { code } = req.params;
+  const registration = await Registration.findOne({
+    certificateCode: code.toUpperCase().trim(),
+  }).populate({
+    path: 'event',
+    populate: { path: 'club' },
+  });
+
+  if (!registration) {
+    throw new AppError('Certificate not found or invalid code', 404);
+  }
+
+  const event = registration.event;
+  const club = event ? event.club : null;
+  const template = (await CertificateTemplate.findOne({ event: event._id })) || {};
+
+  const { pdfBuffer } = await generateCertificatePdf({
+    template,
+    registration,
+    event,
+    club,
+  });
+
+  const safeFilename = `${(registration.name || 'certificate').replace(/[^a-zA-Z0-9]/g, '_')}_certificate.pdf`;
+
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `inline; filename="${safeFilename}"`);
+  res.send(pdfBuffer);
+});
+
 module.exports = {
   getTemplate,
   upsertTemplate,
   listTemplates,
   downloadCertificate,
   issueCertificatesForEvent,
+  verifyCertificate,
+  downloadVerifiedCertificate,
 };

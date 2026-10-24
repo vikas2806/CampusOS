@@ -7,10 +7,17 @@ const {
   listTemplates,
   downloadCertificate,
   issueCertificatesForEvent,
+  verifyCertificate,
+  downloadVerifiedCertificate,
 } = require('../controllers/certificateController');
 
 const router = express.Router();
 
+// Public verification routes (no auth needed)
+router.get('/verify/:code', verifyCertificate);
+router.get('/verify/:code/pdf', downloadVerifiedCertificate);
+
+// Protected routes
 router.use(protect);
 
 // Download certificate (accessible to authenticated users)

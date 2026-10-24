@@ -39,6 +39,7 @@ app.use('/api/budget', require('./routes/budget'));
 app.use('/api/announcements', require('./routes/announcements'));
 app.use('/api/certificates', require('./routes/certificates'));
 app.use('/api/reports', require('./routes/reports'));
+app.use('/api/dashboard', require('./routes/dashboard'));
 
 
 // 404 handler

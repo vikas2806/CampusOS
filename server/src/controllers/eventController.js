@@ -101,4 +101,130 @@ const deleteEvent = asyncWrapper(async (req, res) => {
   res.json({ success: true, message: 'Event deleted' });
 });
 
-module.exports = { createEvent, updateEvent, listEvents, getEvent, deleteEvent };
+// GET /api/events/templates
+const listTemplates = asyncWrapper(async (req, res) => {
+  const { clubId } = req.query;
+  const filter = { isTemplate: true };
+  if (clubId) {
+    filter.$or = [{ club: clubId }, { club: null }];
+  }
+  const templates = await Event.find(filter).sort({ createdAt: -1 });
+  res.json({ success: true, templates });
+});
+
+// POST /api/events/templates
+const createTemplate = asyncWrapper(async (req, res) => {
+  const { clubId, templateName, title, description, venue, rules, schedule, customFields, banner } = req.body;
+  if (!templateName) throw new AppError('templateName is required', 400);
+
+  if (clubId) {
+    await verifyClubAccess(clubId, req.user._id);
+  }
+
+  const template = await Event.create({
+    club: clubId || null,
+    createdBy: req.user._id,
+    title: title || templateName,
+    templateName,
+    isTemplate: true,
+    description: description || '',
+    venue: venue || '',
+    rules: rules || '',
+    schedule: schedule || [],
+    customFields: customFields || [],
+    banner: banner || '',
+    status: 'draft',
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+
+  res.status(201).json({ success: true, template });
+});
+
+// POST /api/events/:id/template
+const saveAsTemplate = asyncWrapper(async (req, res) => {
+  const { templateName } = req.body;
+  const event = await Event.findById(req.params.id);
+  if (!event) throw new AppError('Event not found', 404);
+  await verifyClubAccess(event.club, req.user._id);
+
+  const template = await Event.create({
+    club: event.club,
+    createdBy: req.user._id,
+    title: event.title,
+    templateName: templateName || `${event.title} Template`,
+    isTemplate: true,
+    description: event.description,
+    venue: event.venue,
+    capacity: event.capacity,
+    rules: event.rules,
+    schedule: event.schedule,
+    customFields: event.customFields,
+    banner: event.banner,
+    status: 'draft',
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+
+  res.status(201).json({ success: true, template });
+});
+
+// POST /api/events/templates/:templateId/instantiate
+const createFromTemplate = asyncWrapper(async (req, res) => {
+  const { templateId } = req.params;
+  const { clubId, title, startDate, endDate, venue, capacity, registrationDeadline } = req.body;
+
+  const template = await Event.findOne({ _id: templateId, isTemplate: true });
+  if (!template) throw new AppError('Event template not found', 404);
+
+  const targetClubId = clubId || template.club;
+  if (!targetClubId) throw new AppError('clubId is required to instantiate template', 400);
+
+  const club = await verifyClubAccess(targetClubId, req.user._id);
+
+  const newEvent = await Event.create({
+    club: targetClubId,
+    createdBy: req.user._id,
+    title: title || template.title,
+    description: template.description,
+    startDate: startDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    endDate: endDate || new Date(Date.now() + 8 * 24 * 60 * 60 * 1000),
+    venue: venue || template.venue,
+    capacity: capacity !== undefined ? capacity : template.capacity,
+    registrationDeadline: registrationDeadline || null,
+    rules: template.rules,
+    schedule: template.schedule,
+    customFields: template.customFields,
+    banner: template.banner,
+    isPublic: true,
+    status: 'draft',
+    isTemplate: false,
+    plan: club.plan,
+  });
+
+  res.status(201).json({ success: true, event: newEvent });
+});
+
+// DELETE /api/events/templates/:id
+const deleteTemplate = asyncWrapper(async (req, res) => {
+  const template = await Event.findOne({ _id: req.params.id, isTemplate: true });
+  if (!template) throw new AppError('Template not found', 404);
+  if (template.club) {
+    await verifyClubAccess(template.club, req.user._id);
+  }
+  await template.deleteOne();
+  res.json({ success: true, message: 'Template deleted' });
+});
+
+module.exports = {
+  createEvent,
+  updateEvent,
+  listEvents,
+  getEvent,
+  deleteEvent,
+  listTemplates,
+  createTemplate,
+  saveAsTemplate,
+  createFromTemplate,
+  deleteTemplate,
+};

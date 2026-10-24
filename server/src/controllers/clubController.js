@@ -84,4 +84,62 @@ const removeMember = asyncWrapper(async (req, res) => {
   res.json({ success: true, message: 'Member removed' });
 });
 
-module.exports = { createClub, getMyClub, updateClub, addMember, removeMember };
+// GET /api/clubs/plans
+const getBillingPlans = asyncWrapper(async (req, res) => {
+  const { PLANS } = require('../services/paymentService');
+  res.json({ success: true, plans: PLANS });
+});
+
+// POST /api/clubs/:id/create-order
+const createUpgradeOrder = asyncWrapper(async (req, res) => {
+  const { plan } = req.body;
+  const club = await Club.findById(req.params.id);
+  if (!club) throw new AppError('Club not found', 404);
+
+  const { createOrder } = require('../services/paymentService');
+  const order = await createOrder({ clubId: club._id, planId: plan });
+  res.json({ success: true, order });
+});
+
+// POST /api/clubs/:id/upgrade
+const upgradeClubPlan = asyncWrapper(async (req, res) => {
+  const { plan, orderId, paymentId, signature, durationDays = 365 } = req.body;
+  const club = await Club.findById(req.params.id);
+  if (!club) throw new AppError('Club not found', 404);
+
+  const { PLANS, verifyPayment } = require('../services/paymentService');
+  if (!PLANS[plan]) {
+    throw new AppError('Invalid plan specified', 400);
+  }
+
+  // verify payment
+  if (orderId && paymentId) {
+    const isValid = verifyPayment({ orderId, paymentId, signature });
+    if (!isValid) {
+      throw new AppError('Payment signature verification failed', 400);
+    }
+  }
+
+  club.plan = plan;
+  club.planExpiresAt =
+    plan === 'free' ? null : new Date(Date.now() + durationDays * 24 * 60 * 60 * 1000);
+
+  await club.save();
+
+  res.json({
+    success: true,
+    message: `Plan upgraded successfully to ${PLANS[plan].name}`,
+    club,
+  });
+});
+
+module.exports = {
+  createClub,
+  getMyClub,
+  updateClub,
+  addMember,
+  removeMember,
+  getBillingPlans,
+  createUpgradeOrder,
+  upgradeClubPlan,
+};

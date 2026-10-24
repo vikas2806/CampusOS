@@ -4,6 +4,8 @@ import PublicLayout from '../components/layout/PublicLayout';
 import DashboardLayout from '../components/layout/DashboardLayout';
 
 import Home from '../pages/Home';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 import NotFound from '../pages/NotFound';
 import PlaceholderPage from '../pages/PlaceholderPage';
 
@@ -49,24 +51,8 @@ export default function AppRouter({ user, onLogout }) {
             />
           }
         />
-        <Route
-          path="/login"
-          element={
-            <PlaceholderPage
-              title="Sign in to CampusOS"
-              description="Access your college club organiser control center."
-            />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <PlaceholderPage
-              title="Create Club Account"
-              description="Start organizing world-class college events with CampusOS."
-            />
-          }
-        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route
           path="/contact"
           element={

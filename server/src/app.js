@@ -40,6 +40,7 @@ app.use('/api/announcements', require('./routes/announcements'));
 app.use('/api/certificates', require('./routes/certificates'));
 app.use('/api/reports', require('./routes/reports'));
 app.use('/api/dashboard', require('./routes/dashboard'));
+app.use('/api/contact', require('./routes/contact'));
 
 
 // 404 handler

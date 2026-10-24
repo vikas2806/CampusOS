@@ -4,11 +4,12 @@ const asyncWrapper = require('../utils/asyncWrapper');
 const AppError = require('../utils/AppError');
 const { publicRegister } = require('../controllers/registrationController');
 const { verifyCertificate } = require('../controllers/certificateController');
+const { checkRegistrationLimit } = require('../middleware/planLimits');
 
 const router = express.Router();
 
 // POST /api/public/register
-router.post('/register', publicRegister);
+router.post('/register', checkRegistrationLimit, publicRegister);
 
 // GET /api/public/certificates/verify/:code
 router.get('/certificates/verify/:code', verifyCertificate);

@@ -9,6 +9,8 @@ const {
   deleteEvent,
 } = require('../controllers/eventController');
 
+const { checkEventLimit } = require('../middleware/planLimits');
+
 const router = express.Router();
 
 // public route (slug-based) handled in a separate route file
@@ -17,7 +19,7 @@ router.use(protect);
 
 router.get('/', listEvents);
 router.get('/:id', getEvent);
-router.post('/', requireRole('admin', 'organiser'), createEvent);
+router.post('/', requireRole('admin', 'organiser'), checkEventLimit, createEvent);
 router.patch('/:id', requireRole('admin', 'organiser'), updateEvent);
 router.delete('/:id', requireRole('admin', 'organiser'), deleteEvent);
 

@@ -14,6 +14,7 @@ import PlaceholderPage from '../pages/PlaceholderPage';
 
 import DashboardHome from '../pages/DashboardHome';
 import EventsList from '../pages/EventsList';
+import EventForm from '../pages/EventForm';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -59,15 +60,8 @@ export default function AppRouter({ user, onLogout }) {
       <Route path="/dashboard" element={<DashboardLayout user={user} onLogout={onLogout} />}>
         <Route index element={<DashboardHome />} />
         <Route path="events" element={<EventsList />} />
-        <Route
-          path="events/new"
-          element={
-            <PlaceholderPage
-              title="Create New Event"
-              description="Configure event details, ticket limits, custom forms, and schedule."
-            />
-          }
-        />
+        <Route path="events/new" element={<EventForm />} />
+        <Route path="events/:id/edit" element={<EventForm />} />
         <Route
           path="events/:id"
           element={

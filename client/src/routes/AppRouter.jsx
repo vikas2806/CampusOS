@@ -9,6 +9,7 @@ import Register from '../pages/Register';
 import Contact from '../pages/Contact';
 import Privacy from '../pages/Privacy';
 import ExploreEvents from '../pages/ExploreEvents';
+import PublicEvent from '../pages/PublicEvent';
 import NotFound from '../pages/NotFound';
 import PlaceholderPage from '../pages/PlaceholderPage';
 
@@ -24,15 +25,7 @@ export default function AppRouter({ user, onLogout }) {
       <Route element={<PublicLayout user={user} onLogout={onLogout} />}>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<ExploreEvents />} />
-        <Route
-          path="/events/:slug"
-          element={
-            <PlaceholderPage
-              title="Event Details & Registration"
-              description="Public event overview, schedule, and attendee registration."
-            />
-          }
-        />
+        <Route path="/events/:slug" element={<PublicEvent />} />
         <Route
           path="/verify"
           element={

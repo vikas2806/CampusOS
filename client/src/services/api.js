@@ -74,8 +74,9 @@ export const registrationService = {
 };
 
 export const checkinService = {
-  verifyQr: (token) => api.post('/checkin', { token }),
-  manualCheckin: (registrationId) => api.post(`/checkin/${registrationId}/manual`),
+  verifyQr: (token) => api.post('/checkin/scan', { token }),
+  manualCheckin: (registrationId) => api.post('/checkin/manual', { registrationId }),
+  getLive: (eventId) => api.get(`/checkin/live/${eventId}`),
 };
 
 export const certificateService = {

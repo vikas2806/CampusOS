@@ -15,6 +15,7 @@ import PlaceholderPage from '../pages/PlaceholderPage';
 import DashboardHome from '../pages/DashboardHome';
 import EventsList from '../pages/EventsList';
 import EventForm from '../pages/EventForm';
+import EventDetails from '../pages/EventDetails';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -62,15 +63,7 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="events" element={<EventsList />} />
         <Route path="events/new" element={<EventForm />} />
         <Route path="events/:id/edit" element={<EventForm />} />
-        <Route
-          path="events/:id"
-          element={
-            <PlaceholderPage
-              title="Event Control Center"
-              description="Live event operations, attendee roster, and broadcast announcements."
-            />
-          }
-        />
+        <Route path="events/:id" element={<EventDetails />} />
         <Route
           path="registrations"
           element={

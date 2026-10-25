@@ -18,6 +18,7 @@ import EventsList from '../pages/EventsList';
 import EventForm from '../pages/EventForm';
 import EventDetails from '../pages/EventDetails';
 import Registrations from '../pages/Registrations';
+import QrScanner from '../pages/QrScanner';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -59,15 +60,7 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="events/:id/edit" element={<EventForm />} />
         <Route path="events/:id" element={<EventDetails />} />
         <Route path="registrations" element={<Registrations />} />
-        <Route
-          path="scanner"
-          element={
-            <PlaceholderPage
-              title="QR Ticket Scanner"
-              description="Instant attendee check-in using your device camera."
-            />
-          }
-        />
+        <Route path="scanner" element={<QrScanner />} />
         <Route
           path="certificates"
           element={

@@ -13,7 +13,13 @@ import {
   Flame,
   Check,
   Building2,
-  Clock
+  Clock,
+  FileCheck2,
+  DollarSign,
+  Bell,
+  Layers,
+  ChevronRight,
+  Smartphone
 } from 'lucide-react';
 
 export default function Home() {
@@ -347,6 +353,245 @@ export default function Home() {
             <p className="text-xs sm:text-sm text-slate-400 mt-1 font-medium">Verified Certificates</p>
           </div>
         </div>
+
+        {/* Features Section */}
+        <section id="features" className="pt-24 lg:pt-32 scroll-mt-24">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs sm:text-sm font-semibold mb-4">
+              <Sparkles className="w-4 h-4 text-indigo-400" />
+              <span>Built for Modern Student Organizers</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+              Features Engineered for{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-300">
+                Chaos-Free College Fests
+              </span>
+            </h2>
+            <p className="text-slate-400 text-base sm:text-lg">
+              Replace chaotic Google Sheets, lost attendance printouts, and disputed certificate claims with an integrated operating system.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Feature 1 */}
+            <div className="group relative p-7 rounded-2xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-800 hover:border-indigo-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-5 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                  <QrCode className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors">
+                  Dynamic QR Gate Passes
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  Sub-second check-in using mobile cameras. Cryptographically generated tokens prevent screenshots, forged entries, and duplicate registrations.
+                </p>
+              </div>
+              <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center text-xs font-semibold text-indigo-400">
+                <span>Fast Gate Operations</span>
+                <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="group relative p-7 rounded-2xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-800 hover:border-violet-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/10 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400 mb-5 group-hover:scale-110 group-hover:bg-violet-600 group-hover:text-white transition-all">
+                  <FileCheck2 className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-violet-300 transition-colors">
+                  Verifiable PDF Certificates
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  Generate branded, high-res certificates in batch. Every certificate includes a unique verification code and QR for public authenticity checks.
+                </p>
+              </div>
+              <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center text-xs font-semibold text-violet-400">
+                <span>Tamper-Proof Issuance</span>
+                <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="group relative p-7 rounded-2xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 group-hover:bg-cyan-600 group-hover:text-white transition-all">
+                  <Users className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                  Volunteer Task Ops
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  Assign logistical responsibilities, food coupons, and gate scanner rights to club volunteers with real-time status boards and duty shifts.
+                </p>
+              </div>
+              <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center text-xs font-semibold text-cyan-400">
+                <span>Team Coordination</span>
+                <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="group relative p-7 rounded-2xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-800 hover:border-emerald-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-5 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                  <DollarSign className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                  Fest Budget & Expense Tracker
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  Log title sponsorships, college grants, sound/stage vendor advances, and prize pool disbursements in Indian Rupees with live balance calculations.
+                </p>
+              </div>
+              <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center text-xs font-semibold text-emerald-400">
+                <span>Audited Financials</span>
+                <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+
+            {/* Feature 5 */}
+            <div className="group relative p-7 rounded-2xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/10 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-5 group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all">
+                  <Bell className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition-colors">
+                  Broadcast Announcements
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  Send instant email notifications to confirmed attendees for room changes, round deadlines, hackathon problem statements, or fest schedules.
+                </p>
+              </div>
+              <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center text-xs font-semibold text-amber-400">
+                <span>Live Communication</span>
+                <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+
+            {/* Feature 6 */}
+            <div className="group relative p-7 rounded-2xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-800 hover:border-rose-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-rose-500/10 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-5 group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white transition-all">
+                  <Layers className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-rose-300 transition-colors">
+                  Ready Event Blueprints
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  Pre-configured templates for 36-hr Hackathons, Robotics Arenas, Coding Contests, and Cultural Nights. Launch in less than 3 minutes.
+                </p>
+              </div>
+              <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center text-xs font-semibold text-rose-400">
+                <span>Instant Setup</span>
+                <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section id="how-it-works" className="pt-24 lg:pt-36">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs sm:text-sm font-semibold mb-4">
+              <Zap className="w-4 h-4 text-violet-400" />
+              <span>Simple 3-Step Lifecycle</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+              From Event Launch to{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-indigo-300 to-cyan-300">
+                Spot Gate Entry in 3 Steps
+              </span>
+            </h2>
+            <p className="text-slate-400 text-base sm:text-lg">
+              Designed for non-stop speed during high-pressure college fest weeks.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto relative">
+            {/* Step 1 */}
+            <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-slate-800/90 shadow-xl overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 right-0 p-6 font-mono text-5xl font-black text-slate-800/40 select-none">
+                01
+              </div>
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-6">
+                  <Calendar className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Publish in Minutes</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  Select a hackathon or fest blueprint, define seat capacity, branch restrictions, and custom questionnaire fields.
+                </p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-indigo-300 font-mono">
+                ✓ Public shareable URL generated
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-slate-800/90 shadow-xl overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 right-0 p-6 font-mono text-5xl font-black text-slate-800/40 select-none">
+                02
+              </div>
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 mb-6">
+                  <Smartphone className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Instant Digital Passes</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  Attendees register on a responsive mobile page and immediately receive their tamper-proof QR gate pass via email & download.
+                </p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-violet-300 font-mono">
+                ✓ Anti-duplicate token issued
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-slate-800/90 shadow-xl overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 right-0 p-6 font-mono text-5xl font-black text-slate-800/40 select-none">
+                03
+              </div>
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Scan & Issue Certs</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  Volunteers check attendees in at auditorium gates in 1.1s. Afterward, generate and email verified PDF certificates with one click.
+                </p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-emerald-300 font-mono">
+                ✓ Attendance auto-synced
+              </div>
+            </div>
+          </div>
+
+          {/* Quick CTA Banner */}
+          <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-indigo-900/40 via-violet-900/30 to-slate-900/60 border border-indigo-500/30 text-center max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+            <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+              Ready to Upgrade Your College Club's Events?
+            </h3>
+            <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
+              Join leading tech chapters across India. Setup your club portal in under 2 minutes with no credit card required.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/register"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50 transition-all text-sm"
+              >
+                <span>Get Started Now</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all text-sm"
+              >
+                <span>Schedule a Campus Demo</span>
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

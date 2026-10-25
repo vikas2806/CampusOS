@@ -11,6 +11,8 @@ import Privacy from '../pages/Privacy';
 import NotFound from '../pages/NotFound';
 import PlaceholderPage from '../pages/PlaceholderPage';
 
+import DashboardHome from '../pages/DashboardHome';
+
 export default function AppRouter({ user, onLogout }) {
   return (
     <Routes>
@@ -61,15 +63,7 @@ export default function AppRouter({ user, onLogout }) {
 
       {/* Dashboard Protected Routes */}
       <Route path="/dashboard" element={<DashboardLayout user={user} onLogout={onLogout} />}>
-        <Route
-          index
-          element={
-            <PlaceholderPage
-              title="Dashboard Overview"
-              description="Real-time event metrics, ticket scans, attendance rates, and budget balance."
-            />
-          }
-        />
+        <Route index element={<DashboardHome />} />
         <Route
           path="events"
           element={

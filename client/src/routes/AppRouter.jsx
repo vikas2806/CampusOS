@@ -6,6 +6,8 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Contact from '../pages/Contact';
+import Privacy from '../pages/Privacy';
 import NotFound from '../pages/NotFound';
 import PlaceholderPage from '../pages/PlaceholderPage';
 
@@ -53,24 +55,8 @@ export default function AppRouter({ user, onLogout }) {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
-          path="/contact"
-          element={
-            <PlaceholderPage
-              title="Contact & Campus Demo"
-              description="Request a campus demo or inquire about university partnerships."
-            />
-          }
-        />
-        <Route
-          path="/privacy"
-          element={
-            <PlaceholderPage
-              title="Privacy & Data Terms"
-              description="CampusOS student data protection and event compliance policies."
-            />
-          }
-        />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
       </Route>
 
       {/* Dashboard Protected Routes */}

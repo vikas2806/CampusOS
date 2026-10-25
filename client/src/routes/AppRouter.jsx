@@ -13,7 +13,7 @@ export default function AppRouter({ user, onLogout }) {
   return (
     <Routes>
       {/* Public Pages */}
-      <Route element={<PublicLayout user={user} />}>
+      <Route element={<PublicLayout user={user} onLogout={onLogout} />}>
         <Route path="/" element={<Home />} />
         <Route
           path="/events"

@@ -8,10 +8,12 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Contact from '../pages/Contact';
 import Privacy from '../pages/Privacy';
+import ExploreEvents from '../pages/ExploreEvents';
 import NotFound from '../pages/NotFound';
 import PlaceholderPage from '../pages/PlaceholderPage';
 
 import DashboardHome from '../pages/DashboardHome';
+import EventsList from '../pages/EventsList';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -19,15 +21,7 @@ export default function AppRouter({ user, onLogout }) {
       {/* Public Pages */}
       <Route element={<PublicLayout user={user} onLogout={onLogout} />}>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/events"
-          element={
-            <PlaceholderPage
-              title="Explore Campus Events"
-              description="Discover tech fests, hackathons, and cultural events happening across colleges."
-            />
-          }
-        />
+        <Route path="/events" element={<ExploreEvents />} />
         <Route
           path="/events/:slug"
           element={
@@ -64,15 +58,7 @@ export default function AppRouter({ user, onLogout }) {
       {/* Dashboard Protected Routes */}
       <Route path="/dashboard" element={<DashboardLayout user={user} onLogout={onLogout} />}>
         <Route index element={<DashboardHome />} />
-        <Route
-          path="events"
-          element={
-            <PlaceholderPage
-              title="Events Management"
-              description="Manage all your club events, drafts, and registrations."
-            />
-          }
-        />
+        <Route path="events" element={<EventsList />} />
         <Route
           path="events/new"
           element={

@@ -17,6 +17,7 @@ import DashboardHome from '../pages/DashboardHome';
 import EventsList from '../pages/EventsList';
 import EventForm from '../pages/EventForm';
 import EventDetails from '../pages/EventDetails';
+import Registrations from '../pages/Registrations';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -57,15 +58,7 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="events/new" element={<EventForm />} />
         <Route path="events/:id/edit" element={<EventForm />} />
         <Route path="events/:id" element={<EventDetails />} />
-        <Route
-          path="registrations"
-          element={
-            <PlaceholderPage
-              title="Registrations & Attendees"
-              description="Search, filter, and export attendee rosters in CSV format."
-            />
-          }
-        />
+        <Route path="registrations" element={<Registrations />} />
         <Route
           path="scanner"
           element={

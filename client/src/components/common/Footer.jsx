@@ -39,9 +39,9 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li><Link to="/events" className="hover:text-indigo-400 transition-colors">Explore Campus Events</Link></li>
               <li><Link to="/#features" className="hover:text-indigo-400 transition-colors">QR Attendance & Check-in</Link></li>
-              <li><Link to="/#features" className="hover:text-indigo-400 transition-colors">Budget & Volunteer Manager</Link></li>
-              <li><Link to="/verify" className="hover:text-indigo-400 transition-colors">Certificate Verification</Link></li>
               <li><Link to="/#pricing" className="hover:text-indigo-400 transition-colors">Pricing & Plans</Link></li>
+              <li><Link to="/#faq" className="hover:text-indigo-400 transition-colors">Frequently Asked Questions</Link></li>
+              <li><Link to="/verify" className="hover:text-indigo-400 transition-colors">Certificate Verification</Link></li>
             </ul>
           </div>
 

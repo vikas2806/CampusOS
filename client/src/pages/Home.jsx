@@ -19,11 +19,14 @@ import {
   Bell,
   Layers,
   ChevronRight,
-  Smartphone
+  ChevronDown,
+  Smartphone,
+  HelpCircle
 } from 'lucide-react';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('ticket');
+  const [openFaq, setOpenFaq] = useState(0);
 
   return (
     <div className="relative overflow-hidden pt-8 pb-20 lg:pt-16 lg:pb-32">
@@ -590,6 +593,294 @@ export default function Home() {
                 <span>Schedule a Campus Demo</span>
               </Link>
             </div>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section id="pricing" className="pt-24 lg:pt-36 scroll-mt-24">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs sm:text-sm font-semibold mb-4">
+              <DollarSign className="w-4 h-4 text-indigo-400" />
+              <span>Transparent College Club Pricing</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+              Simple Plans in{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-300 to-emerald-300">
+                INR (₹) for Every Event
+              </span>
+            </h2>
+            <p className="text-slate-400 text-base sm:text-lg">
+              Start completely free with zero credit card. Upgrade whenever your fest scales up in registrations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {/* Free Starter */}
+            <div className="p-6 sm:p-7 rounded-3xl bg-slate-900/40 border border-slate-800/80 flex flex-col justify-between hover:border-slate-700 transition-all">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  Starter Plan
+                </span>
+                <h3 className="text-xl font-bold text-white mt-1 mb-2">Free Forever</h3>
+                <p className="text-xs text-slate-400 mb-6">
+                  For small college societies, meetups, and new tech clubs.
+                </p>
+                <div className="mb-6">
+                  <span className="text-4xl font-extrabold text-white">₹0</span>
+                  <span className="text-xs text-slate-400 ml-1">/ forever</span>
+                </div>
+                <ul className="space-y-3 text-xs text-slate-300 border-t border-slate-800/80 pt-6">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Up to 3 events</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>100 attendees per event</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>3 core team organisers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Instant QR code check-in</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Public shareable event page</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-8 pt-4">
+                <Link
+                  to="/register"
+                  className="w-full text-center block py-3 rounded-xl font-semibold text-xs text-slate-200 bg-slate-800 hover:bg-slate-700 hover:text-white transition-colors"
+                >
+                  Start Free
+                </Link>
+              </div>
+            </div>
+
+            {/* Event Pro (Highlighted) */}
+            <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-indigo-950/60 to-slate-900 border-2 border-indigo-500 shadow-xl shadow-indigo-500/10 flex flex-col justify-between relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md">
+                Most Popular for Fests
+              </div>
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">
+                  Event Pro
+                </span>
+                <h3 className="text-xl font-bold text-white mt-1 mb-2">Fest Special</h3>
+                <p className="text-xs text-slate-400 mb-6">
+                  Ideal for inter-college hackathons, seminars, and symposiums.
+                </p>
+                <div className="mb-6">
+                  <span className="text-4xl font-extrabold text-white">₹999</span>
+                  <span className="text-xs text-slate-400 ml-1">/ fest</span>
+                </div>
+                <ul className="space-y-3 text-xs text-slate-300 border-t border-slate-800/80 pt-6">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="font-semibold text-white">Up to 10 events</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="font-semibold text-white">500 attendees per event</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>10 team organisers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="text-indigo-300 font-semibold">Custom QR verifiable PDF certs</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Full CSV exports & analytics</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Volunteer task manager</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-8 pt-4">
+                <Link
+                  to="/register"
+                  className="w-full text-center block py-3 rounded-xl font-bold text-xs text-white bg-indigo-600 hover:bg-indigo-500 shadow-md shadow-indigo-600/30 transition-all"
+                >
+                  Get Event Pro
+                </Link>
+              </div>
+            </div>
+
+            {/* Club Unlimited */}
+            <div className="p-6 sm:p-7 rounded-3xl bg-slate-900/40 border border-slate-800/80 flex flex-col justify-between hover:border-violet-500/40 transition-all">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-violet-400">
+                  Club Unlimited
+                </span>
+                <h3 className="text-xl font-bold text-white mt-1 mb-2">Annual Pass</h3>
+                <p className="text-xs text-slate-400 mb-6">
+                  For active societies and ACM / IEEE student chapters.
+                </p>
+                <div className="mb-6">
+                  <span className="text-4xl font-extrabold text-white">₹3,499</span>
+                  <span className="text-xs text-slate-400 ml-1">/ year</span>
+                </div>
+                <ul className="space-y-3 text-xs text-slate-300 border-t border-slate-800/80 pt-6">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="font-semibold text-white">Up to 50 events</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="font-semibold text-white">2,000 attendees / event</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>25 team organisers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Bulk certificate issuance</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Email announcement blasts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Fest budget & sponsor ledger</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-8 pt-4">
+                <Link
+                  to="/register"
+                  className="w-full text-center block py-3 rounded-xl font-semibold text-xs text-white bg-slate-800 hover:bg-slate-700 transition-colors"
+                >
+                  Join Club Unlimited
+                </Link>
+              </div>
+            </div>
+
+            {/* Campus Enterprise */}
+            <div className="p-6 sm:p-7 rounded-3xl bg-slate-900/40 border border-slate-800/80 flex flex-col justify-between hover:border-slate-700 transition-all">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  Institution
+                </span>
+                <h3 className="text-xl font-bold text-white mt-1 mb-2">Campus Enterprise</h3>
+                <p className="text-xs text-slate-400 mb-6">
+                  For university student affairs, colleges & institutions.
+                </p>
+                <div className="mb-6">
+                  <span className="text-4xl font-extrabold text-white">₹14,999</span>
+                  <span className="text-xs text-slate-400 ml-1">/ year</span>
+                </div>
+                <ul className="space-y-3 text-xs text-slate-300 border-t border-slate-800/80 pt-6">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="font-semibold text-white">Unlimited events & clubs</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="font-semibold text-white">Unlimited attendees</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Custom college subdomain</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Dean / Faculty audit dashboard</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>Dedicated training & support</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-8 pt-4">
+                <Link
+                  to="/contact"
+                  className="w-full text-center block py-3 rounded-xl font-semibold text-xs text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 transition-colors"
+                >
+                  Contact Dean Sales
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" className="pt-24 lg:pt-36 scroll-mt-24">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs sm:text-sm font-semibold mb-4">
+              <HelpCircle className="w-4 h-4 text-violet-400" />
+              <span>Got Questions?</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-slate-400 text-base sm:text-lg">
+              Everything you need to know about setting up and running events on CampusOS.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              {
+                q: 'Can volunteers scan tickets without special hardware or barcode guns?',
+                a: 'Yes! Any student volunteer can open the CampusOS scanner in their smartphone browser or camera. No app store installation or specialized hardware is needed. It scans QR tickets instantly in less than 1.2 seconds.',
+              },
+              {
+                q: 'How do tamper-proof digital certificates work?',
+                a: 'Each certificate generated on CampusOS includes an embedded cryptographic verification QR code and a unique certificate ID. Anyone — including recruiters and other colleges — can scan the QR code to immediately verify authenticity on our public verification portal.',
+              },
+              {
+                q: 'What happens if our college auditorium basement has weak Wi-Fi?',
+                a: 'CampusOS gate check-in includes local caching. Volunteers can continue scanning tickets smoothly; all check-in entries sync automatically when connectivity resumes, strictly preventing duplicate entry.',
+              },
+              {
+                q: 'Can we collect custom registration details like roll numbers and branch?',
+                a: 'Yes! When designing an event, you can specify custom questionnaire fields, college roll numbers, branch/year dropdowns, GitHub handles, or team size constraints.',
+              },
+              {
+                q: 'How does fest budget and sponsorship tracking work?',
+                a: 'You can record sponsor income, college grants, sound/stage vendor advances, and prize disbursements in INR. CampusOS computes live balances and allows one-click CSV report exports for student council audits.',
+              },
+              {
+                q: 'How do we upgrade our club plan?',
+                a: 'You can start free today. Whenever your event needs more capacity or custom certificates, upgrade instantly via UPI or cards from the Billing section inside your organizer dashboard.',
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl bg-slate-900/50 border border-slate-800/80 overflow-hidden transition-all"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 text-white hover:text-indigo-300 font-semibold text-sm sm:text-base focus:outline-none"
+                >
+                  <span>{item.q}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-slate-400 transition-transform duration-200 shrink-0 ${
+                      openFaq === idx ? 'rotate-180 text-indigo-400' : ''
+                    }`}
+                  />
+                </button>
+                {openFaq === idx && (
+                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-slate-800/50">
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </section>
       </div>

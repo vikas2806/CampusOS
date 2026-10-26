@@ -254,7 +254,7 @@ export default function Registrations() {
       </div>
 
       {/* Registrations Table */}
-      <div className="p-6 rounded-3xl bg-slate-900/60 border border-slate-800 shadow-xl overflow-hidden">
+      <div className="p-4 sm:p-6 rounded-3xl bg-slate-900/60 border border-slate-800 shadow-xl overflow-hidden">
         {regLoading ? (
           <div className="py-16 text-center text-xs text-slate-500 animate-pulse">
             Loading registrations for selected event...

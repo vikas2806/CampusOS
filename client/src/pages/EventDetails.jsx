@@ -371,7 +371,7 @@ export default function EventDetails() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`flex-1 py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 whitespace-nowrap transition-all ${
+              className={`flex-shrink-0 sm:flex-1 py-2.5 px-3.5 sm:px-4 rounded-xl flex items-center justify-center gap-2 whitespace-nowrap transition-all ${
                 activeTab === tab.key
                   ? 'bg-indigo-600 text-white shadow-md'
                   : 'text-slate-400 hover:text-slate-200'

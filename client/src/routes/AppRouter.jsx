@@ -25,6 +25,7 @@ import Budget from '../pages/Budget';
 import Announcements from '../pages/Announcements';
 import Reports from '../pages/Reports';
 import Templates from '../pages/Templates';
+import Billing from '../pages/Billing';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -73,15 +74,7 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="announcements" element={<Announcements />} />
         <Route path="reports" element={<Reports />} />
         <Route path="templates" element={<Templates />} />
-        <Route
-          path="billing"
-          element={
-            <PlaceholderPage
-              title="Billing & Club Plans"
-              description="Upgrade to Event Pro, Club Unlimited, or Campus Enterprise."
-            />
-          }
-        />
+        <Route path="billing" element={<Billing />} />
       </Route>
 
       {/* 404 Fallback */}

@@ -23,6 +23,9 @@ import {
 } from 'lucide-react';
 import { eventService } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import LoadingSpinner from '../components/common/LoadingSpinner';
+import EmptyState from '../components/common/EmptyState';
+import ErrorMessage from '../components/common/ErrorMessage';
 
 export default function EventsList() {
   const { user } = useAuth();
@@ -160,39 +163,30 @@ export default function EventsList() {
 
       {/* Events Content */}
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="h-64 rounded-2xl bg-slate-900 border border-slate-800 animate-pulse" />
-          ))}
+        <div className="py-16">
+          <LoadingSpinner size="lg" message="Loading your club events..." />
         </div>
       ) : error ? (
-        <div className="p-8 rounded-2xl bg-slate-900/60 border border-rose-500/20 text-center max-w-md mx-auto my-12">
-          <AlertCircle className="w-10 h-10 text-rose-400 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-white mb-2">Failed to load events</h3>
-          <p className="text-xs text-slate-400 mb-4">{error}</p>
-          <button
-            onClick={fetchEvents}
-            className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-indigo-600"
-          >
-            Try Again
-          </button>
+        <div className="max-w-md mx-auto my-12">
+          <ErrorMessage
+            error={error}
+            title="Failed to Load Events"
+            onRetry={fetchEvents}
+          />
         </div>
       ) : filteredEvents.length === 0 ? (
-        <div className="text-center py-16 px-4 border border-dashed border-slate-800 rounded-3xl bg-slate-900/30 max-w-xl mx-auto my-8">
-          <Calendar className="w-12 h-12 text-slate-600 mx-auto mb-4" />
-          <h3 className="text-base font-bold text-white mb-1">No events found</h3>
-          <p className="text-xs text-slate-400 max-w-md mx-auto mb-6">
-            {search
-              ? 'No events match your search query. Try clearing filters.'
-              : 'You have not created any events in this status yet. Launch your next hackathon or workshop today!'}
-          </p>
-          <Link
-            to="/dashboard/events/new"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-md shadow-indigo-600/30"
-          >
-            <PlusCircle className="w-4 h-4" />
-            <span>Create Your First Event</span>
-          </Link>
+        <div className="max-w-xl mx-auto my-8">
+          <EmptyState
+            icon={Calendar}
+            title="No events found"
+            description={
+              search
+                ? 'No events match your search query. Try clearing filters or searching another title.'
+                : 'You have not created any events in this status yet. Launch your next hackathon or workshop today!'
+            }
+            actionLabel="Create Your First Event"
+            actionTo="/dashboard/events/new"
+          />
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

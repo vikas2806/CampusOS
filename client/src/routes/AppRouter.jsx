@@ -22,6 +22,8 @@ import QrScanner from '../pages/QrScanner';
 import Certificates from '../pages/Certificates';
 import Volunteers from '../pages/Volunteers';
 import Budget from '../pages/Budget';
+import Announcements from '../pages/Announcements';
+import Reports from '../pages/Reports';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -67,15 +69,8 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="certificates" element={<Certificates />} />
         <Route path="tasks" element={<Volunteers />} />
         <Route path="budget" element={<Budget />} />
-        <Route
-          path="announcements"
-          element={
-            <PlaceholderPage
-              title="Broadcast Announcements"
-              description="Send email alerts and notifications to all confirmed attendees."
-            />
-          }
-        />
+        <Route path="announcements" element={<Announcements />} />
+        <Route path="reports" element={<Reports />} />
         <Route
           path="templates"
           element={

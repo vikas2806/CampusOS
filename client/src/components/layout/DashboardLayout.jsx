@@ -19,7 +19,8 @@ import {
   ChevronRight,
   ExternalLink,
   Shield,
-  Building2
+  Building2,
+  BarChart3
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -46,6 +47,7 @@ export default function DashboardLayout({ user, onLogout }) {
     { label: 'Volunteer Tasks', path: '/dashboard/tasks', icon: CheckSquare },
     { label: 'Budget & Expenses', path: '/dashboard/budget', icon: Wallet },
     { label: 'Announcements', path: '/dashboard/announcements', icon: Megaphone },
+    { label: 'Reports', path: '/dashboard/reports', icon: BarChart3 },
     { label: 'Templates', path: '/dashboard/templates', icon: Copy },
     { label: 'Billing & Plan', path: '/dashboard/billing', icon: CreditCard },
   ];
@@ -63,6 +65,7 @@ export default function DashboardLayout({ user, onLogout }) {
     if (p === '/dashboard/tasks') return 'Volunteer Task Manager';
     if (p === '/dashboard/budget') return 'Budget & Expenses Tracker';
     if (p === '/dashboard/announcements') return 'Broadcast Announcements';
+    if (p === '/dashboard/reports') return 'Event Reports';
     if (p === '/dashboard/templates') return 'Event Blueprints';
     if (p === '/dashboard/billing') return 'Billing & Subscriptions';
     return 'Dashboard';

@@ -19,6 +19,7 @@ import EventForm from '../pages/EventForm';
 import EventDetails from '../pages/EventDetails';
 import Registrations from '../pages/Registrations';
 import QrScanner from '../pages/QrScanner';
+import Certificates from '../pages/Certificates';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -61,15 +62,7 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="events/:id" element={<EventDetails />} />
         <Route path="registrations" element={<Registrations />} />
         <Route path="scanner" element={<QrScanner />} />
-        <Route
-          path="certificates"
-          element={
-            <PlaceholderPage
-              title="Certificates Designer & Issuance"
-              description="Design branded PDF certificates and issue with automated QR verification."
-            />
-          }
-        />
+        <Route path="certificates" element={<Certificates />} />
         <Route
           path="tasks"
           element={

@@ -20,6 +20,7 @@ import EventDetails from '../pages/EventDetails';
 import Registrations from '../pages/Registrations';
 import QrScanner from '../pages/QrScanner';
 import Certificates from '../pages/Certificates';
+import Volunteers from '../pages/Volunteers';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -63,15 +64,7 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="registrations" element={<Registrations />} />
         <Route path="scanner" element={<QrScanner />} />
         <Route path="certificates" element={<Certificates />} />
-        <Route
-          path="tasks"
-          element={
-            <PlaceholderPage
-              title="Volunteer Task Management"
-              description="Assign tasks, set priorities, and coordinate event day volunteers."
-            />
-          }
-        />
+        <Route path="tasks" element={<Volunteers />} />
         <Route
           path="budget"
           element={

@@ -21,6 +21,7 @@ import Registrations from '../pages/Registrations';
 import QrScanner from '../pages/QrScanner';
 import Certificates from '../pages/Certificates';
 import Volunteers from '../pages/Volunteers';
+import Budget from '../pages/Budget';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -65,15 +66,7 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="scanner" element={<QrScanner />} />
         <Route path="certificates" element={<Certificates />} />
         <Route path="tasks" element={<Volunteers />} />
-        <Route
-          path="budget"
-          element={
-            <PlaceholderPage
-              title="Budget & Expenses Tracker"
-              description="Track sponsorship income, vendor payouts, and fest financials in INR."
-            />
-          }
-        />
+        <Route path="budget" element={<Budget />} />
         <Route
           path="announcements"
           element={

@@ -24,6 +24,7 @@ import Volunteers from '../pages/Volunteers';
 import Budget from '../pages/Budget';
 import Announcements from '../pages/Announcements';
 import Reports from '../pages/Reports';
+import Templates from '../pages/Templates';
 
 export default function AppRouter({ user, onLogout }) {
   return (
@@ -71,15 +72,7 @@ export default function AppRouter({ user, onLogout }) {
         <Route path="budget" element={<Budget />} />
         <Route path="announcements" element={<Announcements />} />
         <Route path="reports" element={<Reports />} />
-        <Route
-          path="templates"
-          element={
-            <PlaceholderPage
-              title="Event Templates"
-              description="Blueprint library for rapid hackathon and workshop creation."
-            />
-          }
-        />
+        <Route path="templates" element={<Templates />} />
         <Route
           path="billing"
           element={
